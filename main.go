@@ -25,7 +25,7 @@ func main() {
 			return
 		}
 		filename := filepath.Base(file.Filename)
-		upLoadFileName := fmt.Sprintf(`./.upload_tmp/` + filename)
+		upLoadFileName := fmt.Sprintf(`./upload/tmp/` + filename)
 		if err != nil {
 			panic(err)
 		}
