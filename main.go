@@ -5,11 +5,11 @@ package main
 // @Update    2021/6/15 20:46
 
 import (
+	"etl-demo/tools"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"net/http"
 	"path/filepath"
-
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -25,13 +25,17 @@ func main() {
 			return
 		}
 		filename := filepath.Base(file.Filename)
-		upLoadFileName := fmt.Sprintf(`./upload/` + filename)
+		upLoadFileName := fmt.Sprintf(`./.upload_tmp/` + filename)
+		if err != nil {
+			panic(err)
+		}
 		if err := c.SaveUploadedFile(file, upLoadFileName); err != nil {
 			c.String(http.StatusBadRequest, fmt.Sprintf("upload file err: %s", err.Error()))
 			return
 		}
+		fileMd5, err := tools.CalcFileMd5(upLoadFileName)
 		c.String(http.StatusOK,
-			fmt.Sprintf("File %s uploaded successfully.", filename))
+			fmt.Sprintf("File %s uploaded successfully,file md5 %s", filename, fileMd5))
 	})
 	r.Run(":8088")
 }
