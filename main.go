@@ -37,5 +37,5 @@ func main() {
 		c.String(http.StatusOK,
 			fmt.Sprintf("File %s uploaded successfully,file md5 %s", filename, fileMd5))
 	})
-	r.Run(":8088")
+	r.Run(":8088") //start on port 8088
 }
