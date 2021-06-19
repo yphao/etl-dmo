@@ -5,7 +5,7 @@ package main
 // @Update    2021/6/15 20:46
 
 import (
-	"etl-demo/tools"
+	"etl-demo/app/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	r := gin.New()
 	// Set a lower memory limit for multipart forms, default is 32MB
 	r.MaxMultipartMemory = 8 << 20 // 8MB
 	r.Static("/", "./views")
@@ -33,7 +33,12 @@ func main() {
 			c.String(http.StatusBadRequest, fmt.Sprintf("upload file err: %s", err.Error()))
 			return
 		}
-		fileMd5, err := tools.CalcFileMd5(upLoadFileName)
+		fileMd5, err := utils.CalcFileMd5(upLoadFileName)
+		config, err := utils.InitConfig()
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(config)
 		c.String(http.StatusOK,
 			fmt.Sprintf("File %s uploaded successfully,file md5 %s", filename, fileMd5))
 	})
