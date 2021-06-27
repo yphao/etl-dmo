@@ -5,17 +5,16 @@ package main
 // @Update    2021/6/15 20:46
 
 import (
+	"etl-demo/app/models"
 	"etl-demo/app/routers"
 	"etl-demo/app/utils"
-	"fmt"
 )
 
 func main() {
-	config, err := utils.InitConfig()
-	if err != nil {
-		fmt.Println(err)
-	}
 
+	models.SetUp(false)
+
+	config := utils.GetConfig()
 	router := routers.SetupRouter()
 	router.Run(config.Server.Ip + ":" + config.Server.Port)
 }

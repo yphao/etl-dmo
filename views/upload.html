@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Single file upload</title>
+</head>
+<body>
+<h2>Upload single file with fields</h2>
+<form action="/uploadFile" method="post" enctype="multipart/form-data">
+  Files: <input name="file" type="file" value="选择文件" maxlength="10" >
+  <input name="submit" type="submit" value="Submit">
+  <h3><h3>
+  <br>
+</form>
+<!--<script>-->
+<!--  function rec(){-->
+<!--    var resmes = {{ .rec }}-->
+<!--    alert(resmes)-->
+<!--  }-->
+<!--</script>-->
+</body>

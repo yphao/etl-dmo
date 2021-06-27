@@ -4,3 +4,10 @@ server:
 upload:
     dir: ./upload/
     tmpdir: ./upload/tmp/
+database:
+    host: 127.0.0.1
+    port: 3306
+    db: demo
+    user: root
+    passwd: 111111
+    charset: utf8mb4

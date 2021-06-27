@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Single file upload</title>
+</head>
+<body>
+<h2>Upload file result</h2>
+  <h4>{{ .rec }}</h4>
+<h4>本页面将在<span id="Time">5</span>秒之后跳转到登录页面! 如未成功跳转，请<a href="javascript: window.location.href='/upload'">点击这里</a> </h4>
+  <input name="确定" type="submit" value="Submit"  >
+  <br>
+</form>
+<script>
+  function countDown() {
+    //获取初始时间
+    var time = document.getElementById("Time");
+
+    //获取到id为time标签中的数字时间
+    if (time.innerHTML == 0) {
+      //等于0时清除计时，并跳转该指定页面
+      window.location.href="/upload";
+    } else {
+      time.innerHTML = time.innerHTML - 1;
+    }
+  }
+
+  //1000毫秒调用一次
+  window.setInterval("countDown()", 1000);
+</script>
+</body>
